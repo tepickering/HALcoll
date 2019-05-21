@@ -100,5 +100,8 @@ venv.bak/
 # mkdocs documentation
 /site
 
+# matplotlib figures
+*.pdf
+
 # mypy
 .mypy_cache/
