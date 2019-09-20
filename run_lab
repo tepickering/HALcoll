@@ -1,0 +1,6 @@
+#!/bin/bash
+
+docker run -ti --rm \
+    -p 9999:9999 \
+    -v $PWD:/home/halcoll/halcoll \
+    halcoll_train_lab:latest

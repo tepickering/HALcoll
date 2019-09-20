@@ -1,6 +1,9 @@
 FROM conda/miniconda3
 
-MAINTAINER T. E. Pickering "te_pickering@gmail.com"
+LABEL maintainer="te_pickering@gmail.com"
+
+ARG USER_ID
+ARG GROUP_ID
 
 RUN apt update && apt -y upgrade
 
@@ -14,17 +17,16 @@ RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager jupyter-mat
 
 RUN conda clean -y --all
 
+RUN groupadd -f -g ${GROUP_ID} halcoll && \
+    useradd -l -u ${USER_ID} -g halcoll halcoll
+
 EXPOSE 9999
 
 RUN useradd -U -l -u 1000 -m -d /home/halcoll -s /bin/bash halcoll
 
-USER 1000:1000
-
-ADD --chown=1000:1000 ./notebooks/ /home/halcoll/notebooks
-ADD --chown=1000:1000 ./halcoll/ /home/halcoll/halcoll
-ADD --chown=1000:1000 ./raw_data/ /home/halcoll/raw_data
+USER halcoll
 
 ENV HOME /home/halcoll
 
 ENTRYPOINT ["jupyter", "lab", "--ip='*'", "--port=9999", "--no-browser"]
-CMD ["--notebook-dir=/home/halcoll/notebooks"]
+CMD ["--notebook-dir=/home/halcoll/halcoll/notebooks"]
