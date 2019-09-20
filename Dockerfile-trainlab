@@ -20,9 +20,9 @@ RUN conda clean -y --all
 RUN groupadd -f -g ${GROUP_ID} halcoll && \
     useradd -l -u ${USER_ID} -g halcoll halcoll
 
-EXPOSE 9999
+RUN mkdir -p /home/halcoll && chown -R halcoll:halcoll /home/halcoll
 
-RUN useradd -U -l -u 1000 -m -d /home/halcoll -s /bin/bash halcoll
+EXPOSE 9999
 
 USER halcoll
 
