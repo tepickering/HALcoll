@@ -12,11 +12,11 @@ RUN conda update -y -n base -c defaults conda && conda update -y --all
 
 RUN conda install -y astropy pandas seaborn matplotlib jupyterlab nodejs ipympl astroplan -c astropy
 
-RUN pip install tensorflow
-
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager jupyter-matplotlib
 
 RUN conda clean -y --all
+
+RUN pip install tensorflow skyfield
 
 RUN groupadd -f -g ${GROUP_ID} halcoll && \
     useradd -l -u ${USER_ID} -g halcoll halcoll
