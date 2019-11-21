@@ -7,10 +7,10 @@ ARG GROUP_ID
 
 RUN apt update && apt -y upgrade
 
-RUN apt -y install emacs procps
+RUN apt -y install emacs-nox procps
 RUN conda update -y -n base -c defaults conda && conda update -y --all
 
-RUN conda install -y astropy pandas seaborn matplotlib jupyterlab nodejs ipympl astroplan -c astropy
+RUN conda install -y astropy pandas seaborn matplotlib jupyterlab nodejs ipympl astroplan pymysql -c astropy
 
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager jupyter-matplotlib
 
