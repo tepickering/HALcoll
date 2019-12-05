@@ -1,6 +1,6 @@
 FROM continuumio/miniconda3
 
-LABEL maintainer="te_pickering@gmail.com"
+LABEL maintainer="te.pickering@gmail.com"
 
 ARG USER_ID
 ARG GROUP_ID
